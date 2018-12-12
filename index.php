@@ -56,13 +56,22 @@
 /*
  *  =============== SESSION 3 ===============
  */
-require_once ('DatabaseManager.php');
-use Database\DatabaseManager;
+//require_once ('DatabaseManager.php');
+//use Database\DatabaseManager;
+//
+//$db1 = DatabaseManager::createSingletonObject();
+//$db2 = DatabaseManager::createSingletonObject();
+//
+////$db1 = new DatabaseManager();
+////$db2 = new DatabaseManager();
+//var_dump($db1);
+//var_dump($db2);
 
-$db1 = DatabaseManager::createSingletonObject();
-$db2 = DatabaseManager::createSingletonObject();
+/*
+ * Nguyen-Ly-Composition-over-Inheritance
+ *  =============== SESSION 4 ===============
+ */
+require_once ('MallardDuck.php');
 
-//$db1 = new DatabaseManager();
-//$db2 = new DatabaseManager();
-var_dump($db1);
-var_dump($db2);
+$duck = new MallardDuck();
+echo $duck->flyBehaviour->fly();
