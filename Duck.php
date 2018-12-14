@@ -8,10 +8,6 @@
 
 abstract class Duck
 {
-    public $flyBehaviour;
-    public function setFlyBehaviour($flyBehaviour) {
-        $this->flyBehaviour = $flyBehaviour;
-    }
     public function swim() {
         echo "Vịt bắt đầu bơi";
     }

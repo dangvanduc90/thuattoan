@@ -12,7 +12,7 @@ class MallardDuck extends Duck
 {
     public function __construct()
     {
-        $this->flyBehaviour = new NoFlyBehaviour();
+        $this->flyBehaviour = new NoFlyBehaviour(true);
     }
 
     public function display()

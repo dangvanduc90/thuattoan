@@ -71,49 +71,49 @@
  * Nguyen-Ly-Composition-over-Inheritance
  *  =============== SESSION 4 ===============
  */
-//require_once ('MallardDuck.php');
+require_once ('MallardDuck.php');
+
+$duck = new MallardDuck();
+echo $duck->flyBehaviour->fly();
+echo $duck->flyBehaviour->is_check;
+
+///*
+// * trait
+// *  =============== SESSION 6 ===============
+// */
 //
-//$duck = new MallardDuck();
-//echo $duck->flyBehaviour->fly();
-
-
-/*
- * trait
- *  =============== SESSION 6 ===============
- */
-
-trait Admin {
-    public function checkLogin()
-    {
-        return "Check login check";
-    }
-
-    public function isAdmin()
-    {
-        return "Ok Admin";
-    }
-}
-trait Authenticate
-{
-    public function checkLogin()
-    {
-        return "Check login Authenticate";
-    }
-
-    public function isAdmin()
-    {
-        return "Ok Authenticate";
-    }
-}
-
-class User {
-    use Admin, Authenticate {
-        Authenticate::checkLogin insteadof Admin;
-        Admin::isAdmin insteadof Authenticate;
-    }
-    public function check() {
-        return $this->checkLogin();
-    }
-}
-$user = new User();
-echo $user->check();
+//trait Admin {
+//    public function checkLogin()
+//    {
+//        return "Check login check";
+//    }
+//
+//    public function isAdmin()
+//    {
+//        return "Ok Admin";
+//    }
+//}
+//trait Authenticate
+//{
+//    public function checkLogin()
+//    {
+//        return "Check login Authenticate";
+//    }
+//
+//    public function isAdmin()
+//    {
+//        return "Ok Authenticate";
+//    }
+//}
+//
+//class User {
+//    use Admin, Authenticate {
+//        Authenticate::checkLogin insteadof Admin;
+//        Admin::isAdmin insteadof Authenticate;
+//    }
+//    public function check() {
+//        return $this->checkLogin();
+//    }
+//}
+//$user = new User();
+//echo $user->check();
