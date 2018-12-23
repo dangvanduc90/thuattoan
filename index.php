@@ -124,92 +124,170 @@
  *  =============== SESSION 7 ===============
  */
 
-class ClassName {
-    public $name = '';
-    public function __construct()
-    {
-        echo "__construct has been called<br>";
-    }
-    public function __set($key, $value)
-    {
-        echo "__set Setting $key to $value<br>";
-    }
-    public function __get($name)
-    {
-        echo "__get name is: $name<br>";
-    }
-    public function __isset($name)
-    {
-        echo "__isset name is: $name<br>";
-    }
-    public function __invoke(...$value)
-    {
-        echo "__invoke has been called ".json_encode($value)."<br>";
-    }
-    public function __unset($name)
-    {
-        echo "__unset name is: $name<br>";
-    }
-    // Phương thức __call() sẽ được gọi khi bạn gọi tới một phương thức nào đó không tồn tại trong đối tượng
-    public function __call($name, $arguments)
-    {
-        echo "__call has been called $name with ".json_encode($arguments)."<br>";
-    }
-    public static function __callStatic($name, $arguments)
-    {
-        echo "__callStatic has been called $name with ".json_encode($arguments)."<br>";
-    }
-    public function __toString()
-    {
-        // TODO: Implement __toString() method.
-        return "__toString has been called<br>";
-    }
-    public function __sleep()
-    {
-        echo "__sleep has been called<br>";
-        // Thông thường khi chúng ta serialize() một đối tượng thì nó sẽ trả về tất cả các thuộc tính trong đối tượng đó
-        //Nhưng nếu sử dụng __sleep() thì chúng ta có thể quy định được các thuộc tính có thể trả về.
-        return array('name');
-    }
-    public function __wakeup()
-    {
-        $this->name;
-        echo "__wakeup has been called<br>";
-    }
-    public function __clone()
-    {
-        echo "__clone has been called<br>";
-    }
-//    public static function __set_state($an_array)
+//class ClassName {
+//    public $name = '';
+//    public function __construct()
 //    {
-//        echo "__set_state has been called with ".json_encode($an_array)."<br>";
+//        echo "__construct has been called<br>";
 //    }
-    public function __debugInfo()
-    {
-        echo "__debugInfo has been called<br>";
-    }
-    public function __destruct()
-    {
-        echo "__destruct has been called<br>";
-    }
+//    public function __set($key, $value)
+//    {
+//        echo "__set Setting $key to $value<br>";
+//    }
+//    public function __get($name)
+//    {
+//        echo "__get name is: $name<br>";
+//    }
+//    public function __isset($name)
+//    {
+//        echo "__isset name is: $name<br>";
+//    }
+//    public function __invoke(...$value)
+//    {
+//        echo "__invoke has been called ".json_encode($value)."<br>";
+//    }
+//    public function __unset($name)
+//    {
+//        echo "__unset name is: $name<br>";
+//    }
+//    // Phương thức __call() sẽ được gọi khi bạn gọi tới một phương thức nào đó không tồn tại trong đối tượng
+//    public function __call($name, $arguments)
+//    {
+//        echo "__call has been called $name with ".json_encode($arguments)."<br>";
+//    }
+//    public static function __callStatic($name, $arguments)
+//    {
+//        echo "__callStatic has been called $name with ".json_encode($arguments)."<br>";
+//    }
+//    public function __toString()
+//    {
+//        return "__toString has been called<br>";
+//    }
+//    public function __sleep()
+//    {
+//        echo "__sleep has been called<br>";
+//        // Thông thường khi chúng ta serialize() một đối tượng thì nó sẽ trả về tất cả các thuộc tính trong đối tượng đó
+//        //Nhưng nếu sử dụng __sleep() thì chúng ta có thể quy định được các thuộc tính có thể trả về.
+//        return array('name');
+//    }
+//    public function __wakeup()
+//    {
+//        $this->name;
+//        echo "__wakeup has been called<br>";
+//    }
+//    public function __clone()
+//    {
+//        echo "__clone has been called<br>";
+//    }
+////    public static function __set_state($an_array)
+////    {
+////        echo "__set_state has been called with ".json_encode($an_array)."<br>";
+////    }
+//    public function __debugInfo()
+//    {
+//        echo "__debugInfo has been called<br>";
+//    }
+//    public function __destruct()
+//    {
+//        echo "__destruct has been called<br>";
+//    }
+//
+//    public static function testCall() {
+//        return 'testCall';
+//    }
+//}
+//
+//$class = new ClassName(); // __construct
+//$class->username = 'dangvanduc90'; // __set
+//echo $class->username; // __get
+//isset($class->username); // __isset
+//$class('name', 'dangvanduc90'); // __invoke
+//unset($class->username); // __unset
+//echo $class->methodNotExist('dd'); // __call
+//ClassName::username('da'); // __callStatic
+//echo $class; // __toString
+//$var = serialize($class); // Phương thức __sleep() sẽ được gọi khi chúng ta thực hiện serialize() đối tượng.
+////unserialize($var); // __wakeup also call __destruct too
+//$class1 = clone $class; // __clone
+////var_export($class); // __set_state
+//var_dump($class); // __debugInfo
+//unset($class); // __destruct
 
-    public static function testCall() {
-        return 'testCall';
-    }
+/*
+ * array function
+ *  =============== SESSION 7 ===============
+ */
+
+// array_column
+$samples = array(
+    'a' => array(
+        'id' => 2135,
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+    ),
+    'b' => array(
+        'id' => 3245,
+        'first_name' => 'Sally',
+        'last_name' => 'Smith'
+    ),
+    'c' => array(
+        'id' => 5342,
+        'first_name' => 'Jane',
+        'last_name' => 'Jones'
+    ),
+    'd' => array(
+        'id' => 5623,
+        'first_name' => 'Peter',
+        'last_name' => 'Doe'
+    )
+);
+
+$result = array_column($samples, 'first_name', 'id');
+
+$arr = array(3, 3, 10, 5, 4, 1, 44, 20, 23, 65, 25);
+$arr1 = array('a' => 42, 'b' => 47, 'c' => 3, 'd' => 34, 'e' => 5, 'f' => 7);
+$arr2 = array('a' => 42, 'b' => 7, 'c' => 3, 'd' => 24, 'e' => 47);
+$arr2 = array('a' => 47, 'b' => 17, 'c' => 22, 'd' => 3, 'e' => 42);
+
+// array_filter cach 1
+function callback($item)
+{
+    return $item % 5 === 0;
 }
 
-$class = new ClassName(); // __construct
-$class->username = 'dangvanduc90'; // __set
-echo $class->username; // __get
-isset($class->username); // __isset
-$class('name', 'dangvanduc90'); // __invoke
-unset($class->username); // __unset
-echo $class->methodNotExist('dd'); // __call
-ClassName::username('da'); // __callStatic
-echo $class; // __toString
-$var = serialize($class); // Phương thức __sleep() sẽ được gọi khi chúng ta thực hiện serialize() đối tượng.
-//unserialize($var); // __wakeup also call __destruct too
-$class1 = clone $class; // __clone
-//var_export($class); // __set_state
-var_dump($class); // __debugInfo
-unset($class); // __destruct
+$result = array_filter($arr, 'callback');
+// array_filter cach 2
+$result = array_filter($arr, function ($item) {
+    return $item % 5 === 0;
+});
+
+$result = array_change_key_case($samples, CASE_UPPER);
+$result = array_count_values($arr);
+$result = array_diff($arr1, $arr2);
+$result = array_diff_assoc($arr1, $arr2);
+$result = array_diff_key($arr1, $arr2);
+$result = array_fill(0, 9, 'dangvanduc90d');
+$result = array_fill_keys($arr, 'dangvanduc90');
+$result = array_filter($samples, function ($value) {
+    return $value['id'] == 2135;
+});
+//$result = array_flip($arr);
+$result = array_intersect($arr1, $arr2);
+$result = array_intersect_assoc($arr1, $arr2);
+$result = array_keys($samples, array(
+    'id' => 2135,
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+));
+$result = array_map(function ($value1, $value2) {
+    return [$value1, $value2];
+}, $arr, $arr2);
+$result = array_merge($arr1, $arr2);
+$result = array_merge_recursive($arr1, $arr2);
+$result = array_rand($arr, 2);
+$result = array_slice($arr, -3, 2);
+$input = array("red", "green", "blue", "yellow", "pink", "black");
+array_splice($input, 0);
+$result = array_slice($input, 0);
+var_dump($result);
+var_dump($input);
