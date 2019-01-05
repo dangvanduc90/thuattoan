@@ -890,66 +890,107 @@
 //clientCode(new MysqlQueryBuilder());
 
 // Design Pattern: Command
-class Light {
-    public function switchOn()
+//class Light {
+//    public function switchOn()
+//    {
+//        echo "Switch light on";
+//    }
+//    public function switchOff()
+//    {
+//        echo "Switch light off";
+//    }
+//}
+//
+//interface Command {
+//    function execute();
+//}
+//
+//class CommandOn implements Command {
+//    protected $light;
+//
+//    public function __construct(Light $light)
+//    {
+//        $this->light = $light;
+//    }
+//
+//    public function execute()
+//    {
+//        $this->light->switchOn();
+//    }
+//}
+//class CommandOff implements Command {
+//    protected $light;
+//
+//    public function __construct(Light $light)
+//    {
+//        $this->light = $light;
+//    }
+//
+//    public function execute()
+//    {
+//        $this->light->switchOff();
+//    }
+//}
+//class RemoteControl {
+//    private $command;
+//
+//    public function setCommand(Command $command)
+//    {
+//        $this->command = $command;
+//    }
+//
+//    public function pressButton()
+//    {
+//        $this->command->execute();
+//    }
+//}
+//$light = new Light();
+//$cm1 = new CommandOn($light);
+//$cm2 = new CommandOff($light);
+//$rc = new RemoteControl();
+//$rc->setCommand($cm1);
+//$rc->pressButton();
+//
+//$rc->setCommand($cm2);
+//$rc->pressButton();
+
+// quachsonCategories Design Pattern, JavaPosted on 2011-04-222 Comments
+// Adapter Pattern
+class FishingBoat {
+    public function sail()
     {
-        echo "Switch light on";
+        echo "sail...";
     }
-    public function switchOff()
+    public function fish()
     {
-        echo "Switch light off";
+        echo "fish...";
     }
 }
 
-interface Command {
-    function execute();
+interface BattleShip {
+    function fire();
+    function move();
 }
 
-class CommandOn implements Command {
-    protected $light;
+class BattleFishingBoat implements BattleShip {
+    private $fishingBoat;
 
-    public function __construct(Light $light)
+    public function __construct(FishingBoat $fishingBoat)
     {
-        $this->light = $light;
+        $this->fishingBoat = $fishingBoat;
     }
 
-    public function execute()
+    function fire()
     {
-        $this->light->switchOn();
-    }
-}
-class CommandOff implements Command {
-    protected $light;
-
-    public function __construct(Light $light)
-    {
-        $this->light = $light;
+        echo "Fire...";
     }
 
-    public function execute()
+    function move()
     {
-        $this->light->switchOff();
+        $this->fishingBoat->sail();
     }
 }
-class RemoteControl {
-    private $command;
 
-    public function setCommand(Command $command)
-    {
-        $this->command = $command;
-    }
-
-    public function pressButton()
-    {
-        $this->command->execute();
-    }
-}
-$light = new Light();
-$cm1 = new CommandOn($light);
-$cm2 = new CommandOff($light);
-$rc = new RemoteControl();
-$rc->setCommand($cm1);
-$rc->pressButton();
-
-$rc->setCommand($cm2);
-$rc->pressButton();
+$boat = new BattleFishingBoat(new FishingBoat());
+$boat->fire();
+$boat->move();

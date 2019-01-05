@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b93b8d88-41dd-4e1f-8ec7-2192a10ffa50" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +16,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="813">
-              <caret line="947" column="24" selection-start-line="947" selection-start-column="24" selection-end-line="947" selection-end-column="24" />
+            <state relative-caret-position="592">
+              <caret line="979" column="42" selection-start-line="979" selection-start-column="42" selection-end-line="979" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -34,6 +33,8 @@
       <find>__destruct</find>
       <find>limit</find>
       <find>$command</find>
+      <find>Adapter</find>
+      <find>$fishingBoat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,12 +140,12 @@
       <workItem from="1544624818850" duration="7012000" />
       <workItem from="1544700294384" duration="3592000" />
       <workItem from="1544797282050" duration="6547000" />
-      <workItem from="1546654397896" duration="5688000" />
+      <workItem from="1546654397896" duration="6507000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22839000" />
+    <option name="totallyTimeSpent" value="23658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -236,8 +237,8 @@
     <entry file="file://$PROJECT_DIR$/PropertyTest.php" />
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="947" column="24" selection-start-line="947" selection-start-column="24" selection-end-line="947" selection-end-column="24" />
+        <state relative-caret-position="592">
+          <caret line="979" column="42" selection-start-line="979" selection-start-column="42" selection-end-line="979" selection-end-column="42" />
         </state>
       </provider>
     </entry>
