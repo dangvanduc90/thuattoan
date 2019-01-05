@@ -809,82 +809,147 @@
 /*
  *  ============ SECTION 19 ============ */
 
-interface SQLQueryBuilder
-{
-    public function select(string $table, array $field) : SQLQueryBuilder;
-    public function where(string $field, string $value, string $operator = '') : SQLQueryBuilder;
-    public function limit(int $start, int $offset): SQLQueryBuilder;
-    public function getSQL(): string;
+//interface SQLQueryBuilder
+//{
+//    public function select(string $table, array $field) : SQLQueryBuilder;
+//    public function where(string $field, string $value, string $operator = '') : SQLQueryBuilder;
+//    public function limit(int $start, int $offset): SQLQueryBuilder;
+//    public function getSQL(): string;
+//}
+//
+//class MysqlQueryBuilder implements SQLQueryBuilder {
+//
+//    protected $query;
+//
+//    protected function reset() {
+//        $this->query = new \stdClass;
+//    }
+//
+//    public function select(string $table, array $field): SQLQueryBuilder
+//    {
+//        $this->reset();
+//        $this->query->base = "select " . implode(",", $field) . " from " . $table;
+//        $this->query->type = "select";
+//
+//        return $this;
+//    }
+//
+//    public function where(string $field, string $value, string $operator = ''): SQLQueryBuilder
+//    {
+//        if (!in_array($this->query->type, ['select', 'update', 'delete'])) {
+//            throw new Exception("WHERE can only be added to SELECT or UPDATE or DELETE");
+//        }
+//        $this->query->where[] = "$field $operator '$value'";
+//
+//        return $this;
+//    }
+//
+//    public function limit(int $start, int $offset): SQLQueryBuilder
+//    {
+//        if (!in_array($this->query->type, ['select'])) {
+//            throw new \Exception("LIMIT can only be added to SELECT");
+//        }
+//        $this->query->limit = " LIMIT " . $start . "," . $offset;
+//
+//        return $this;
+//    }
+//
+//    public function getSQL(): string
+//    {
+//        $query = $this->query;
+//        $sql = $query->base;
+//        if (!empty($query->where)) {
+//            $sql .= " WHERE " . implode(" AND ", $query->where);
+//        }
+//        if (isset($query->limit)) {
+//            $sql .= $query->limit;
+//        }
+//        $sql .= ";";
+//        return $sql;
+//    }
+//}
+//
+//class PostgresQueryBuilder extends MysqlQueryBuilder {
+//    public function limit(int $start, int $offset): SQLQueryBuilder
+//    {
+//        parent::limit($start, $offset);
+//        $this->query->limit = " LIMIT " . $start . " OFFSET " . $offset;
+//
+//        return $this;
+//    }
+//}
+//
+//function clientCode(SQLQueryBuilder $queryBuilder) {
+//    $query = $queryBuilder
+//        ->select("users", ["name", "email"])
+//        ->where("age", 18, ">")
+//        ->limit(0, 10)
+//        ->getSQL();
+//    echo $query;
+//}
+//clientCode(new MysqlQueryBuilder());
+
+// Design Pattern: Command
+class Light {
+    public function switchOn()
+    {
+        echo "Switch light on";
+    }
+    public function switchOff()
+    {
+        echo "Switch light off";
+    }
 }
 
-class MysqlQueryBuilder implements SQLQueryBuilder {
-
-    protected $query;
-
-    protected function reset() {
-        $this->query = new \stdClass;
-    }
-
-    public function select(string $table, array $field): SQLQueryBuilder
-    {
-        $this->reset();
-        $this->query->base = "select " . implode(",", $field) . " from " . $table;
-        $this->query->type = "select";
-
-        return $this;
-    }
-
-    public function where(string $field, string $value, string $operator = ''): SQLQueryBuilder
-    {
-        if (!in_array($this->query->type, ['select', 'update', 'delete'])) {
-            throw new Exception("WHERE can only be added to SELECT or UPDATE or DELETE");
-        }
-        $this->query->where[] = "$field $operator '$value'";
-
-        return $this;
-    }
-
-    public function limit(int $start, int $offset): SQLQueryBuilder
-    {
-        if (!in_array($this->query->type, ['select'])) {
-            throw new \Exception("LIMIT can only be added to SELECT");
-        }
-        $this->query->limit = " LIMIT " . $start . "," . $offset;
-
-        return $this;
-    }
-
-    public function getSQL(): string
-    {
-        $query = $this->query;
-        $sql = $query->base;
-        if (!empty($query->where)) {
-            $sql .= " WHERE " . implode(" AND ", $query->where);
-        }
-        if (isset($query->limit)) {
-            $sql .= $query->limit;
-        }
-        $sql .= ";";
-        return $sql;
-    }
+interface Command {
+    function execute();
 }
 
-class PostgresQueryBuilder extends MysqlQueryBuilder {
-    public function limit(int $start, int $offset): SQLQueryBuilder
-    {
-        parent::limit($start, $offset);
-        $this->query->limit = " LIMIT " . $start . " OFFSET " . $offset;
+class CommandOn implements Command {
+    protected $light;
 
-        return $this;
+    public function __construct(Light $light)
+    {
+        $this->light = $light;
+    }
+
+    public function execute()
+    {
+        $this->light->switchOn();
     }
 }
+class CommandOff implements Command {
+    protected $light;
 
-function clientCode(SQLQueryBuilder $queryBuilder) {
-    $query = $queryBuilder
-        ->select("users", ["name", "email"])
-        ->where("age", 18, ">")
-        ->limit(0, 10)
-        ->getSQL();
-    echo $query;
+    public function __construct(Light $light)
+    {
+        $this->light = $light;
+    }
+
+    public function execute()
+    {
+        $this->light->switchOff();
+    }
 }
-clientCode(new MysqlQueryBuilder());
+class RemoteControl {
+    private $command;
+
+    public function setCommand(Command $command)
+    {
+        $this->command = $command;
+    }
+
+    public function pressButton()
+    {
+        $this->command->execute();
+    }
+}
+$light = new Light();
+$cm1 = new CommandOn($light);
+$cm2 = new CommandOff($light);
+$rc = new RemoteControl();
+$rc->setCommand($cm1);
+$rc->pressButton();
+
+$rc->setCommand($cm2);
+$rc->pressButton();
