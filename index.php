@@ -996,38 +996,57 @@
 //$boat->move();
 
 // Facade Pattern
-class CPU {
-    public function boot()
-    {
-        echo "boot...";
-    }
-}
-class RAM {
-    public function load()
-    {
-        echo "load...";
-    }
-}
-class HardDrive {
-    public function init()
-    {
-        echo "init...";
-    }
-}
-class Computer {
-    private $cpu, $ram, $hardDrive;
+//class CPU {
+//    public function boot()
+//    {
+//        echo "boot...";
+//    }
+//}
+//class RAM {
+//    public function load()
+//    {
+//        echo "load...";
+//    }
+//}
+//class HardDrive {
+//    public function init()
+//    {
+//        echo "init...";
+//    }
+//}
+//class Computer {
+//    private $cpu, $ram, $hardDrive;
+//
+//    public function __construct(CPU $CPU, RAM $RAM, HardDrive $hardDrive)
+//    {
+//        $this->cpu = $CPU;
+//        $this->ram = $RAM;
+//        $this->hardDrive = $hardDrive;
+//    }
+//
+//    public function start()
+//    {
+//        $this->cpu->boot();
+//        $this->ram->load();
+//        $this->hardDrive->init();
+//    }
+//}
 
-    public function __construct(CPU $CPU, RAM $RAM, HardDrive $hardDrive)
+// Design Pattern: Decorator
+class Number {
+    public function print()
     {
-        $this->cpu = $CPU;
-        $this->ram = $RAM;
-        $this->hardDrive = $hardDrive;
-    }
-
-    public function start()
-    {
-        $this->cpu->boot();
-        $this->ram->load();
-        $this->hardDrive->init();
+        echo rand(1, 9999);
     }
 }
+
+class Decorator {
+    private $number;
+    public function __construct(Number $number)
+    {
+        $this->number = $number;
+        $this->number->print();
+    }
+}
+
+$decorator = new Decorator(new Number());
