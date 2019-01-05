@@ -956,41 +956,78 @@
 
 // quachsonCategories Design Pattern, JavaPosted on 2011-04-222 Comments
 // Adapter Pattern
-class FishingBoat {
-    public function sail()
+//class FishingBoat {
+//    public function sail()
+//    {
+//        echo "sail...";
+//    }
+//    public function fish()
+//    {
+//        echo "fish...";
+//    }
+//}
+//
+//interface BattleShip {
+//    function fire();
+//    function move();
+//}
+//
+//class BattleFishingBoat implements BattleShip {
+//    private $fishingBoat;
+//
+//    public function __construct(FishingBoat $fishingBoat)
+//    {
+//        $this->fishingBoat = $fishingBoat;
+//    }
+//
+//    function fire()
+//    {
+//        echo "Fire...";
+//    }
+//
+//    function move()
+//    {
+//        $this->fishingBoat->sail();
+//    }
+//}
+//
+//$boat = new BattleFishingBoat(new FishingBoat());
+//$boat->fire();
+//$boat->move();
+
+// Facade Pattern
+class CPU {
+    public function boot()
     {
-        echo "sail...";
-    }
-    public function fish()
-    {
-        echo "fish...";
+        echo "boot...";
     }
 }
-
-interface BattleShip {
-    function fire();
-    function move();
-}
-
-class BattleFishingBoat implements BattleShip {
-    private $fishingBoat;
-
-    public function __construct(FishingBoat $fishingBoat)
+class RAM {
+    public function load()
     {
-        $this->fishingBoat = $fishingBoat;
-    }
-
-    function fire()
-    {
-        echo "Fire...";
-    }
-
-    function move()
-    {
-        $this->fishingBoat->sail();
+        echo "load...";
     }
 }
+class HardDrive {
+    public function init()
+    {
+        echo "init...";
+    }
+}
+class Computer {
+    private $cpu, $ram, $hardDrive;
 
-$boat = new BattleFishingBoat(new FishingBoat());
-$boat->fire();
-$boat->move();
+    public function __construct(CPU $CPU, RAM $RAM, HardDrive $hardDrive)
+    {
+        $this->cpu = $CPU;
+        $this->ram = $RAM;
+        $this->hardDrive = $hardDrive;
+    }
+
+    public function start()
+    {
+        $this->cpu->boot();
+        $this->ram->load();
+        $this->hardDrive->init();
+    }
+}

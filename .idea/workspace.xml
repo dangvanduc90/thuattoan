@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b93b8d88-41dd-4e1f-8ec7-2192a10ffa50" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +18,17 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="979" column="42" selection-start-line="979" selection-start-column="42" selection-end-line="979" selection-end-column="42" />
+            <state relative-caret-position="502">
+              <caret line="998" lean-forward="true" selection-start-line="998" selection-end-line="998" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="a.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/a.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -35,6 +46,9 @@
       <find>$command</find>
       <find>Adapter</find>
       <find>$fishingBoat</find>
+      <find>state</find>
+      <find>HappyState</find>
+      <find>AngryState</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -56,6 +70,7 @@
         <option value="$PROJECT_DIR$/NoFlyBehaviour.php" />
         <option value="$PROJECT_DIR$/MallardDuck.php" />
         <option value="$PROJECT_DIR$/PropertyTest.php" />
+        <option value="$PROJECT_DIR$/a.java" />
         <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
@@ -140,12 +155,12 @@
       <workItem from="1544624818850" duration="7012000" />
       <workItem from="1544700294384" duration="3592000" />
       <workItem from="1544797282050" duration="6547000" />
-      <workItem from="1546654397896" duration="6507000" />
+      <workItem from="1546654397896" duration="7489000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23658000" />
+    <option name="totallyTimeSpent" value="24640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -160,7 +175,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32849163" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32849163" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32849163" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -235,10 +250,17 @@
     <entry file="file://$PROJECT_DIR$/MallardDuck.php" />
     <entry file="file://$PROJECT_DIR$/NoFlyBehaviour.php" />
     <entry file="file://$PROJECT_DIR$/PropertyTest.php" />
+    <entry file="file://$PROJECT_DIR$/a.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="979" column="42" selection-start-line="979" selection-start-column="42" selection-end-line="979" selection-end-column="42" />
+        <state relative-caret-position="502">
+          <caret line="998" lean-forward="true" selection-start-line="998" selection-end-line="998" />
         </state>
       </provider>
     </entry>
