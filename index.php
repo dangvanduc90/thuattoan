@@ -1032,21 +1032,193 @@
 //    }
 //}
 
-// Design Pattern: Decorator
-class Number {
-    public function print()
+//// Design Pattern: Decorator
+//class Number {
+//    public function print()
+//    {
+//        echo rand(1, 9999);
+//    }
+//}
+//
+//class Decorator {
+//    private $number;
+//    public function __construct(Number $number)
+//    {
+//        $this->number = $number;
+//        $this->number->print();
+//    }
+//}
+//
+//$decorator = new Decorator(new Number());
+
+// Design Pattern: Observer
+interface Observer
+{
+    public function update();
+}
+interface Subject
+{
+    public function attach(Observer $observer);
+    public function detach(Observer $observer);
+    public function notify();
+}
+class Account implements Subject {
+    const LOGIN_SUCCESS = 1;
+    const LOGIN_FAILURE = 2;
+    const EXPIRED = 4;
+    private $state;
+    private $storage;
+    private $data;
+
+    public function __construct()
     {
-        echo rand(1, 9999);
+        $this->state = [];
+        $this->storage = [];
     }
+
+    public function attach(Observer $observer)
+    {
+        $isContain = array_search($observer, $this->storage);
+        if ($isContain === false) {
+            $this->storage[] = $observer;
+        }
+    }
+
+    public function detach(Observer $observer)
+    {
+        foreach($this->storage as $key => $val) {
+            if ($val == $observer) {
+                unset($this->storage[$key]);
+            }
+        }
+    }
+
+    public function notify()
+    {
+        foreach($this->storage as $observer) {
+            $observer->update($this);
+        }
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function login(string $email, string $password)
+    {
+        $this->setData([
+            'email' => $email,
+            'password' => $password,
+        ]);
+        $login = $this->process($email);
+        $login ? $this->setState(Account::LOGIN_SUCCESS) : $this->setState(Account::LOGIN_FAILURE);
+        $this->notify();
+    }
+
+    public function save()
+    {
+        $this->notify();
+    }
+
+    public function process($email)
+    {
+        if ($email == 'dangvanduc0@gmail.com') {
+            return true;
+        }
+        return false;
+    }
+
 }
 
-class Decorator {
-    private $number;
-    public function __construct(Number $number)
+class Logger implements Observer {
+    private $account;
+    public function __construct(Account $account)
     {
-        $this->number = $number;
-        $this->number->print();
+        $this->account = $account;
+    }
+
+    public function update()
+    {
+        $account = $this->account;
+        $state = $account->getState();
+        $data = $account->getData();
+        if ($state == Account::LOGIN_SUCCESS) {
+            echo  "User {$data['email']} vừa online";
+            echo '<br>';
+        }
     }
 }
+class Mailer implements Observer {
+    private $account;
+    public function __construct(Account $account)
+    {
+        $this->account = $account;
+    }
 
-$decorator = new Decorator(new Number());
+    public function update()
+    {
+        $account = $this->account;
+        $state = $account->getState();
+        $data = $account->getData();
+        if ($state == $account::EXPIRED) {
+            echo "Account {$data['email']} has expired. Email sent!";
+            echo '<br>';
+        }
+    }
+}
+class Security implements Observer {
+    private $account;
+    public function __construct(Account $account)
+    {
+        $this->account = $account;
+    }
+    public function update()
+    {
+        $account = $this->account;
+        $state = $account->getState();
+        $data = $account->getData();
+        if ($state == Account::LOGIN_FAILURE) {
+            echo "Account {$data['email']} with password {$data['password']} are login failure";
+            echo '<br>';
+        }
+    }
+}
+$account = new Account();
+$security = new Security($account);
+$logger = new Logger($account);
+$mailer = new Mailer($account);
+
+//Attach các observer vào subject
+$account->attach($logger);
+$account->attach($mailer);
+$account->attach($security);
+
+// Đăng nhập
+$account->login('dangvanduc0@gmail.com', '123456');
+
+// Thay đổi state
+$account->setState(Account::EXPIRED);
+$account->save();
+
+// login failure
+$account->login('hack@framgia.com', '123456');
+
+// Xóa security observer
+$account->detach($security);
+$account->login('hack@framgia.com', '123456'); // will not notify
