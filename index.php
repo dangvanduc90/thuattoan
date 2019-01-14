@@ -1242,54 +1242,114 @@
 //$edinburgh = new UniversityOfEdinburgh();
 //enroll($chris, $edinburgh);
 
-// Design Pattern: Composite
-interface RenderableInterface {
-    public function render();
+//// Design Pattern: Composite
+//interface RenderableInterface {
+//    public function render();
+//}
+//class Form implements RenderableInterface {
+//
+//    private $elements = [];
+//
+//    public function render(): string
+//    {
+//        $formCode = '<form>';
+//        foreach ($this->elements as $element) {
+//            $formCode .= $element->render();
+//        }
+//        $formCode .= '</form>';
+//        return $formCode;
+//    }
+//
+//    public function addElement(RenderableInterface $renderable)
+//    {
+//        $this->elements[] = $renderable;
+//    }
+//}
+//class InputElement implements RenderableInterface {
+//
+//    public function render(): string
+//    {
+//        return '<input type="text">';
+//    }
+//}
+//class TextElement implements RenderableInterface {
+//
+//    private $text;
+//    public function __construct(string $str)
+//    {
+//        $this->text = $str;
+//    }
+//
+//    public function render(): string
+//    {
+//        return $this->text;
+//    }
+//}
+//
+//$form = new Form();
+//$form->addElement(new TextElement('Email:'));
+//$form->addElement(new InputElement());
+//$form->addElement(new TextElement('Password:'));
+//$form->addElement(new InputElement());
+//
+//var_dump($form->render());
+
+// Design Pattern: Flyweight
+interface FlyweightInterface {
+    public function render(string $font);
 }
-class Form implements RenderableInterface {
 
-    private $elements = [];
+class CharacterFlyweight implements FlyweightInterface {
+    private $name;
 
-    public function render(): string
+    public function __construct(string $name)
     {
-        $formCode = '<form>';
-        foreach ($this->elements as $element) {
-            $formCode .= $element->render();
+        $this->name = $name;
+    }
+
+    public function render(string $font)
+    {
+        return sprintf('Character %s with font %s', $this->name, $font);
+    }
+}
+class FlyweightFactory implements Countable {
+
+    private $pool = [];
+
+    public function get(string $name): CharacterFlyweight
+    {
+        if (!isset($this->pool[$name])) {
+            $this->pool[$name] = new CharacterFlyweight($name);
         }
-        $formCode .= '</form>';
-        return $formCode;
-    }
 
-    public function addElement(RenderableInterface $renderable)
-    {
-        $this->elements[] = $renderable;
+        return $this->pool[$name];
     }
-}
-class InputElement implements RenderableInterface {
-
-    public function render(): string
+    /**
+     * Count elements of an object
+     * @link http://php.net/manual/en/countable.count.php
+     * @return int The custom count as an integer.
+     * </p>
+     * <p>
+     * The return value is cast to an integer.
+     * @since 5.1.0
+     */
+    public function count()
     {
-        return '<input type="text">';
-    }
-}
-class TextElement implements RenderableInterface {
-
-    private $text;
-    public function __construct(string $str)
-    {
-        $this->text = $str;
-    }
-
-    public function render(): string
-    {
-        return $this->text;
+        return count($this->pool);
     }
 }
 
-$form = new Form();
-$form->addElement(new TextElement('Email:'));
-$form->addElement(new InputElement());
-$form->addElement(new TextElement('Password:'));
-$form->addElement(new InputElement());
+$characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+$fonts = ['Arial', 'Times New Roman', 'Verdana', 'Helvetica'];
 
-var_dump($form->render());
+$factory = new FlyweightFactory();
+
+foreach ($characters as $char) {
+    foreach ($fonts as $font) {
+        $flyweight = $factory->get($char);
+        $rendered = $flyweight->render('Arial');
+        var_dump($rendered);
+    }
+}
+var_dump($factory->count());
