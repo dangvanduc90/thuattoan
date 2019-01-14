@@ -17,8 +17,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="745">
-              <caret line="1289" column="28" lean-forward="true" selection-start-line="1289" selection-start-column="28" selection-end-line="1292" selection-end-column="29" />
+            <state relative-caret-position="247">
+              <caret line="1356" column="28" lean-forward="true" selection-start-line="1356" selection-start-column="3" selection-end-line="1356" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -48,7 +48,11 @@
       <find>getStorage</find>
       <find>notify</find>
       <find>update</find>
+      <find>bool</find>
     </findStrings>
+    <replaceStrings>
+      <replace>pool</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -158,14 +162,28 @@
       <workItem from="1546847010971" duration="4094000" />
       <workItem from="1547455822769" duration="981000" />
     </task>
+    <task id="LOCAL-00001" summary="Design Pattern: Composite">
+      <created>1547458390111</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1547458390111</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Design Pattern: Flyweight">
+      <created>1547461971820</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1547461971820</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32643000" />
+    <option name="totallyTimeSpent" value="36909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26545843" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -174,7 +192,7 @@
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32849163" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32849163" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32849163" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
@@ -236,7 +254,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Design Pattern: Observer" />
     <MESSAGE value="Type hinting classes and interfaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="Type hinting classes and interfaces" />
+    <MESSAGE value="Design Pattern: Composite" />
+    <MESSAGE value="Design Pattern: Flyweight" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design Pattern: Flyweight" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -440,8 +460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="1289" column="28" lean-forward="true" selection-start-line="1289" selection-start-column="28" selection-end-line="1292" selection-end-column="29" />
+        <state relative-caret-position="247">
+          <caret line="1356" column="28" lean-forward="true" selection-start-line="1356" selection-start-column="3" selection-end-line="1356" selection-end-column="28" />
         </state>
       </provider>
     </entry>

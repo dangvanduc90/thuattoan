@@ -1294,62 +1294,97 @@
 //
 //var_dump($form->render());
 
-// Design Pattern: Flyweight
-interface FlyweightInterface {
-    public function render(string $font);
+//// Design Pattern: Flyweight
+//interface FlyweightInterface {
+//    public function render(string $font);
+//}
+//
+//class CharacterFlyweight implements FlyweightInterface {
+//    private $name;
+//
+//    public function __construct(string $name)
+//    {
+//        $this->name = $name;
+//    }
+//
+//    public function render(string $font)
+//    {
+//        return sprintf('Character %s with font %s', $this->name, $font);
+//    }
+//}
+//class FlyweightFactory implements Countable {
+//
+//    private $pool = [];
+//
+//    public function get(string $name): CharacterFlyweight
+//    {
+//        if (!isset($this->pool[$name])) {
+//            $this->pool[$name] = new CharacterFlyweight($name);
+//        }
+//
+//        return $this->pool[$name];
+//    }
+//    /**
+//     * Count elements of an object
+//     * @link http://php.net/manual/en/countable.count.php
+//     * @return int The custom count as an integer.
+//     * </p>
+//     * <p>
+//     * The return value is cast to an integer.
+//     * @since 5.1.0
+//     */
+//    public function count()
+//    {
+//        return count($this->pool);
+//    }
+//}
+//
+//$characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+//    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+//$fonts = ['Arial', 'Times New Roman', 'Verdana', 'Helvetica'];
+//
+//$factory = new FlyweightFactory();
+//
+//foreach ($characters as $char) {
+//    foreach ($fonts as $font) {
+//        $flyweight = $factory->get($char);
+//        $rendered = $flyweight->render('Arial');
+//        var_dump($rendered);
+//    }
+//}
+//var_dump($factory->count());
+
+// Design Pattern: Proxy
+interface BankAccount {
+    public function deposit(int $amount);
+    public function getBalance(): int;
 }
+class HeavyBankAccount implements BankAccount {
+    private $transactions = [];
 
-class CharacterFlyweight implements FlyweightInterface {
-    private $name;
-
-    public function __construct(string $name)
+    public function deposit(int $amount)
     {
-        $this->name = $name;
+        $this->transactions[] = $amount;
     }
 
-    public function render(string $font)
+    public function getBalance(): int
     {
-        return sprintf('Character %s with font %s', $this->name, $font);
+        return array_sum($this->transactions);
     }
 }
-class FlyweightFactory implements Countable {
+class BankAccountProxy extends HeavyBankAccount implements BankAccount {
+    private $balance;
 
-    private $pool = [];
-
-    public function get(string $name): CharacterFlyweight
+    public function getBalance(): int
     {
-        if (!isset($this->pool[$name])) {
-            $this->pool[$name] = new CharacterFlyweight($name);
+        if ($this->balance === null) {
+            $this->balance = parent::getBalance();
         }
-
-        return $this->pool[$name];
-    }
-    /**
-     * Count elements of an object
-     * @link http://php.net/manual/en/countable.count.php
-     * @return int The custom count as an integer.
-     * </p>
-     * <p>
-     * The return value is cast to an integer.
-     * @since 5.1.0
-     */
-    public function count()
-    {
-        return count($this->pool);
+        return $this->balance;
     }
 }
 
-$characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-$fonts = ['Arial', 'Times New Roman', 'Verdana', 'Helvetica'];
-
-$factory = new FlyweightFactory();
-
-foreach ($characters as $char) {
-    foreach ($fonts as $font) {
-        $flyweight = $factory->get($char);
-        $rendered = $flyweight->render('Arial');
-        var_dump($rendered);
-    }
-}
-var_dump($factory->count());
+$bank = new BankAccountProxy();
+$bank->deposit(100);
+$bank->deposit(120);
+var_dump($bank->getBalance());
