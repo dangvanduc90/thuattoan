@@ -17,8 +17,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="1196" column="94" selection-start-line="1196" selection-start-column="94" selection-end-line="1196" selection-end-column="94" />
+            <state relative-caret-position="451">
+              <caret line="1147" selection-start-line="1147" selection-end-line="1147" />
             </state>
           </provider>
         </entry>
@@ -164,25 +164,25 @@
       <workItem from="1544700294384" duration="3592000" />
       <workItem from="1544797282050" duration="6547000" />
       <workItem from="1546654397896" duration="7868000" />
-      <workItem from="1546847010971" duration="2820000" />
+      <workItem from="1546847010971" duration="4094000" />
+      <workItem from="1547455822769" duration="981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29178000" />
+    <option name="totallyTimeSpent" value="31433000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26279318" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26545843" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32849163" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32849163" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32849163" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
@@ -191,10 +191,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32933104" />
-      <window_info anchor="bottom" id="Messages" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,8 +424,8 @@
     <entry file="file://$PROJECT_DIR$/PropertyTest.php" />
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="1196" column="94" selection-start-line="1196" selection-start-column="94" selection-end-line="1196" selection-end-column="94" />
+        <state relative-caret-position="451">
+          <caret line="1147" selection-start-line="1147" selection-end-line="1147" />
         </state>
       </provider>
     </entry>
