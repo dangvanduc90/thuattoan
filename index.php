@@ -1224,20 +1224,72 @@
 //$account->login('hack@framgia.com', '123456'); // will not notify
 
 // Type hinting classes and interfaces
-interface Enrollable {};
-interface Attendable {};
-class Chris implements Enrollable
-{
-    public $name = 'Chris';
+//interface Enrollable {};
+//interface Attendable {};
+//class Chris implements Enrollable
+//{
+//    public $name = 'Chris';
+//}
+//class UniversityOfEdinburgh implements Attendable
+//{
+//    public $name = 'University of Edinburgh';
+//}
+//function enroll(Enrollable $enrollee, Attendable $premises)
+//{
+//    echo $enrollee->name . ' is being enrolled at ' . $premises->name;
+//}
+//$chris = new Chris();
+//$edinburgh = new UniversityOfEdinburgh();
+//enroll($chris, $edinburgh);
+
+// Design Pattern: Composite
+interface RenderableInterface {
+    public function render();
 }
-class UniversityOfEdinburgh implements Attendable
-{
-    public $name = 'University of Edinburgh';
+class Form implements RenderableInterface {
+
+    private $elements = [];
+
+    public function render(): string
+    {
+        $formCode = '<form>';
+        foreach ($this->elements as $element) {
+            $formCode .= $element->render();
+        }
+        $formCode .= '</form>';
+        return $formCode;
+    }
+
+    public function addElement(RenderableInterface $renderable)
+    {
+        $this->elements[] = $renderable;
+    }
 }
-function enroll(Enrollable $enrollee, Attendable $premises)
-{
-    echo $enrollee->name . ' is being enrolled at ' . $premises->name;
+class InputElement implements RenderableInterface {
+
+    public function render(): string
+    {
+        return '<input type="text">';
+    }
 }
-$chris = new Chris();
-$edinburgh = new UniversityOfEdinburgh();
-enroll($chris, $edinburgh);
+class TextElement implements RenderableInterface {
+
+    private $text;
+    public function __construct(string $str)
+    {
+        $this->text = $str;
+    }
+
+    public function render(): string
+    {
+        return $this->text;
+    }
+}
+
+$form = new Form();
+$form->addElement(new TextElement('Email:'));
+$form->addElement(new InputElement());
+$form->addElement(new TextElement('Password:'));
+$form->addElement(new InputElement());
+
+var_dump($form->render());
