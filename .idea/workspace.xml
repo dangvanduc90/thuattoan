@@ -17,8 +17,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="1356" column="28" lean-forward="true" selection-start-line="1356" selection-start-column="3" selection-end-line="1356" selection-end-column="28" />
+            <state relative-caret-position="281">
+              <caret line="1391" column="27" selection-start-line="1391" selection-start-column="27" selection-end-line="1391" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -96,8 +96,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -107,7 +107,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,11 +118,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Dashboard.smartshareshop.com" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
@@ -161,6 +161,8 @@
       <workItem from="1546654397896" duration="7868000" />
       <workItem from="1546847010971" duration="4094000" />
       <workItem from="1547455822769" duration="981000" />
+      <workItem from="1547517663795" duration="2623000" />
+      <workItem from="1547523681943" duration="581000" />
     </task>
     <task id="LOCAL-00001" summary="Design Pattern: Composite">
       <created>1547458390111</created>
@@ -176,47 +178,42 @@
       <option name="project" value="LOCAL" />
       <updated>1547461971820</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Design Pattern: Proxy">
+      <created>1547463035149</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1547463035149</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36909000" />
+    <option name="totallyTimeSpent" value="41032000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26545843" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2707889" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32849163" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32849163" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26545843" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32849163" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39965695" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32933104" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32849163" />
-      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +253,8 @@
     <MESSAGE value="Type hinting classes and interfaces" />
     <MESSAGE value="Design Pattern: Composite" />
     <MESSAGE value="Design Pattern: Flyweight" />
-    <option name="LAST_COMMIT_MESSAGE" value="Design Pattern: Flyweight" />
+    <MESSAGE value="Design Pattern: Proxy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design Pattern: Proxy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -460,8 +458,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="1356" column="28" lean-forward="true" selection-start-line="1356" selection-start-column="3" selection-end-line="1356" selection-end-column="28" />
+        <state relative-caret-position="281">
+          <caret line="1391" column="27" selection-start-line="1391" selection-start-column="27" selection-end-line="1391" selection-end-column="27" />
         </state>
       </provider>
     </entry>

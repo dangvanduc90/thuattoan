@@ -1354,37 +1354,71 @@
 //}
 //var_dump($factory->count());
 
-// Design Pattern: Proxy
-interface BankAccount {
-    public function deposit(int $amount);
-    public function getBalance(): int;
-}
-class HeavyBankAccount implements BankAccount {
-    private $transactions = [];
+//// Design Pattern: Proxy
+//interface BankAccount {
+//    public function deposit(int $amount);
+//    public function getBalance(): int;
+//}
+//class HeavyBankAccount implements BankAccount {
+//    private $transactions = [];
+//
+//    public function deposit(int $amount)
+//    {
+//        $this->transactions[] = $amount;
+//    }
+//
+//    public function getBalance(): int
+//    {
+//        return array_sum($this->transactions);
+//    }
+//}
+//class BankAccountProxy extends HeavyBankAccount implements BankAccount {
+//    private $balance;
+//
+//    public function getBalance(): int
+//    {
+//        if ($this->balance === null) {
+//            $this->balance = parent::getBalance();
+//        }
+//        return $this->balance;
+//    }
+//}
+//
+//$bank = new BankAccountProxy();
+//$bank->deposit(100);
+//$bank->deposit(120);
+//var_dump($bank->getBalance());
 
-    public function deposit(int $amount)
-    {
-        $this->transactions[] = $amount;
-    }
+// Design Pattern: Register
+abstract class Register {
+    const LOGGER = 'logger';
 
-    public function getBalance(): int
-    {
-        return array_sum($this->transactions);
-    }
-}
-class BankAccountProxy extends HeavyBankAccount implements BankAccount {
-    private $balance;
+    private static $storedValues = [];
 
-    public function getBalance(): int
+    private static $allowedKeys = [
+        self::LOGGER,
+    ];
+
+    public static function set(string $key, $value)
     {
-        if ($this->balance === null) {
-            $this->balance = parent::getBalance();
+        if (!in_array($key, self::$allowedKeys)) {
+            throw new \InvalidArgumentException('Invalid key given');
         }
-        return $this->balance;
+        self::$storedValues[$key] = $value;
+    }
+
+    public static function get(string $key)
+    {
+        if (!in_array($key, self::$allowedKeys) || !isset(  self::$storedValues[$key])) {
+            throw new \InvalidArgumentException('Invalid key given');
+        }
+        return self::$storedValues[$key];
     }
 }
 
-$bank = new BankAccountProxy();
-$bank->deposit(100);
-$bank->deposit(120);
-var_dump($bank->getBalance());
+$key = Register::LOGGER;
+$logger = new \stdClass();
+$logger->name = 'dangvanduc';
+Register::set($key, $logger);
+$storedLogger = Register::get($key);
+var_dump($storedLogger);
