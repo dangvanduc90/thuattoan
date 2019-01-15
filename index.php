@@ -1389,36 +1389,63 @@
 //$bank->deposit(120);
 //var_dump($bank->getBalance());
 
-// Design Pattern: Register
-abstract class Register {
-    const LOGGER = 'logger';
+//// Design Pattern: Register
+//abstract class Register {
+//    const LOGGER = 'logger';
+//
+//    private static $storedValues = [];
+//
+//    private static $allowedKeys = [
+//        self::LOGGER,
+//    ];
+//
+//    public static function set(string $key, $value)
+//    {
+//        if (!in_array($key, self::$allowedKeys)) {
+//            throw new \InvalidArgumentException('Invalid key given');
+//        }
+//        self::$storedValues[$key] = $value;
+//    }
+//
+//    public static function get(string $key)
+//    {
+//        if (!in_array($key, self::$allowedKeys) || !isset(  self::$storedValues[$key])) {
+//            throw new \InvalidArgumentException('Invalid key given');
+//        }
+//        return self::$storedValues[$key];
+//    }
+//}
+//
+//$key = Register::LOGGER;
+//$logger = new \stdClass();
+//$logger->name = 'dangvanduc';
+//Register::set($key, $logger);
+//$storedLogger = Register::get($key);
+//var_dump($storedLogger);
 
-    private static $storedValues = [];
+// Design Pattern: Multiton
+class Multiton
+{
+    private static $_instances = [];
+    private static $_key;
+    private $_opts1;
+    private $_opts2;
 
-    private static $allowedKeys = [
-        self::LOGGER,
-    ];
-
-    public static function set(string $key, $value)
+    protected function __construct($_opts1, $_opts2)
     {
-        if (!in_array($key, self::$allowedKeys)) {
-            throw new \InvalidArgumentException('Invalid key given');
-        }
-        self::$storedValues[$key] = $value;
+        $this->_opts1 = $_opts1;
+        $this->_opts2 = $_opts2;
     }
 
-    public static function get(string $key)
+    public static function getInstance($param1, $param2)
     {
-        if (!in_array($key, self::$allowedKeys) || !isset(  self::$storedValues[$key])) {
-            throw new \InvalidArgumentException('Invalid key given');
+        self::$_key = $param1 . $param2;
+        if (!isset(self::$_instances[self::$_key]) || !self::$_instances[self::$_key] instanceof self) {
+            self::$_instances[self::$_key] = new self($param1, $param2);
         }
-        return self::$storedValues[$key];
+        return self::$_instances[self::$_key];
     }
 }
 
-$key = Register::LOGGER;
-$logger = new \stdClass();
-$logger->name = 'dangvanduc';
-Register::set($key, $logger);
-$storedLogger = Register::get($key);
-var_dump($storedLogger);
+$multion = Multiton::getInstance('dangvanduc90', 'dangvanduc0@gmail.com');
+var_dump($multion);
