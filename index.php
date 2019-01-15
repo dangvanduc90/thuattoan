@@ -1462,51 +1462,141 @@
 //$abc=new ABC;
 //$abc->demo();
 
-// Design Pattern: Bridge
-interface FormatterInterface
-{
-    public function format(string $text);
-}
-class PlainTextFormatter implements FormatterInterface
-{
+//// Design Pattern: Bridge
+//interface FormatterInterface
+//{
+//    public function format(string $text);
+//}
+//class PlainTextFormatter implements FormatterInterface
+//{
+//
+//    public function format(string $text)
+//    {
+//        return $text;
+//    }
+//}
+//class HtmlFormatter implements FormatterInterface
+//{
+//
+//    public function format(string $text)
+//    {
+//        return sprintf('<p>%s</p>p>', $text);
+//    }
+//}
+//
+//abstract class Service
+//{
+//    protected $implementation;
+//    public function __construct(FormatterInterface $printer)
+//    {
+//        $this->implementation = $printer;
+//    }
+//
+//    public function setImplementation(FormatterInterface $printer)
+//    {
+//        $this->implementation = $printer;
+//    }
+//
+//    abstract public function get();
+//}
+//class HelloWorldService extends Service
+//{
+//    public function get()
+//    {
+//        return $this->implementation->format('Hello World');
+//    }
+//}
+//$service = new HelloWorldService(new PlainTextFormatter());
+//var_dump($service->get());
+//$service->setImplementation(new HtmlFormatter());
+//var_dump($service->get());
 
-    public function format(string $text)
+// Design Pattern: Strategy
+interface QuackBehavior
+{
+    public function doQuack();
+}
+class Quack implements QuackBehavior
+{
+    public function doQuack()
     {
-        return $text;
+        return 'Quack';
     }
 }
-class HtmlFormatter implements FormatterInterface
+class Squeak implements QuackBehavior
 {
-
-    public function format(string $text)
+    public function doQuack()
     {
-        return sprintf('<p>%s</p>p>', $text);
+        return 'Squeak';
+    }
+}
+class MuteQuack implements QuackBehavior
+{
+    public function doQuack()
+    {
+        return 'MuteQuack';
     }
 }
 
-abstract class Service
+interface FlyBehavior
 {
-    protected $implementation;
-    public function __construct(FormatterInterface $printer)
-    {
-        $this->implementation = $printer;
-    }
-
-    public function setImplementation(FormatterInterface $printer)
-    {
-        $this->implementation = $printer;
-    }
-
-    abstract public function get();
+    public function fly();
 }
-class HelloWorldService extends Service
+class FlyWithWings implements FlyBehavior
 {
-    public function get()
+    public function fly()
     {
-        return $this->implementation->format('Hello World');
+        return 'FlyWithWings';
     }
 }
-$service = new HelloWorldService(new PlainTextFormatter());
-var_dump($service->get());
-$service->setImplementation(new HtmlFormatter());
-var_dump($service->get());
+class FlyNoWay implements FlyBehavior
+{
+    public function fly()
+    {
+        return 'FlyNoWay';
+    }
+}
+class Duck
+{
+    private $quackBehavior;
+    private $flyBehavior;
+    public function __construct(QuackBehavior $quackBehavior, FlyBehavior $flyBehavior)
+    {
+        $this->quackBehavior = $quackBehavior;
+        $this->flyBehavior = $flyBehavior;
+    }
+
+    public function performQuack()
+    {
+        return $this->quackBehavior->doQuack();
+    }
+    public function performFly()
+    {
+        return $this->flyBehavior->fly();
+    }
+
+    public function play()
+    {
+        return 'Play';
+    }
+}
+
+class MallardDuck extends Duck
+{
+    private $quackBehavior;
+    private $flyBehavior;
+    public function __construct()
+    {
+        $this->quackBehavior = new Squeak();
+        $this->flyBehavior = new FlyWithWings();
+        parent::__construct($this->quackBehavior, $this->flyBehavior);
+    }
+    public function setQuackBehavior(QuackBehavior $qb) {
+        $this->quackBehavior = $qb;
+    }
+    public function setFlyBehavior(FlyBehavior $fb) {
+        $this->flyBehavior = $fb;
+    }
+}
+$mallardDuck = new MallardDuck();
+var_dump($mallardDuck->performQuack());
