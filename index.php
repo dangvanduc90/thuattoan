@@ -1423,29 +1423,41 @@
 //$storedLogger = Register::get($key);
 //var_dump($storedLogger);
 
-// Design Pattern: Multiton
-class Multiton
-{
-    private static $_instances = [];
-    private static $_key;
-    private $_opts1;
-    private $_opts2;
+//// Design Pattern: Multiton
+//class Multiton
+//{
+//    private static $_instances = [];
+//    private static $_key;
+//    private $_opts1;
+//    private $_opts2;
+//
+//    protected function __construct($_opts1, $_opts2)
+//    {
+//        $this->_opts1 = $_opts1;
+//        $this->_opts2 = $_opts2;
+//    }
+//
+//    public static function getInstance($param1, $param2)
+//    {
+//        self::$_key = $param1 . $param2;
+//        if (!isset(self::$_instances[self::$_key]) || !self::$_instances[self::$_key] instanceof self) {
+//            self::$_instances[self::$_key] = new self($param1, $param2);
+//        }
+//        return self::$_instances[self::$_key];
+//    }
+//}
+//
+//$multion = Multiton::getInstance('dangvanduc90', 'dangvanduc0@gmail.com');
+//var_dump($multion);
 
-    protected function __construct($_opts1, $_opts2)
-    {
-        $this->_opts1 = $_opts1;
-        $this->_opts2 = $_opts2;
-    }
-
-    public static function getInstance($param1, $param2)
-    {
-        self::$_key = $param1 . $param2;
-        if (!isset(self::$_instances[self::$_key]) || !self::$_instances[self::$_key] instanceof self) {
-            self::$_instances[self::$_key] = new self($param1, $param2);
-        }
-        return self::$_instances[self::$_key];
+// LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG: KỸ THUẬT SỬ DỤNG LAZY LOADING
+class ABC{
+    public function demo(){
+        echo "<h2>Welcome to QHOnline Tutorial</h2>";
     }
 }
-
-$multion = Multiton::getInstance('dangvanduc90', 'dangvanduc0@gmail.com');
-var_dump($multion);
+function __autoload($url){
+    require("$url.php");
+}
+$abc=new ABC;
+$abc->demo();
