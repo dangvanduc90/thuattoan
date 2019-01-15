@@ -1450,14 +1450,63 @@
 //$multion = Multiton::getInstance('dangvanduc90', 'dangvanduc0@gmail.com');
 //var_dump($multion);
 
-// LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG: KỸ THUẬT SỬ DỤNG LAZY LOADING
-class ABC{
-    public function demo(){
-        echo "<h2>Welcome to QHOnline Tutorial</h2>";
+//// LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG: KỸ THUẬT SỬ DỤNG LAZY LOADING
+//class ABC{
+//    public function demo(){
+//        echo "<h2>Welcome to QHOnline Tutorial</h2>";
+//    }
+//}
+//function __autoload($url){
+//    require("$url.php");
+//}
+//$abc=new ABC;
+//$abc->demo();
+
+// Design Pattern: Bridge
+interface FormatterInterface
+{
+    public function format(string $text);
+}
+class PlainTextFormatter implements FormatterInterface
+{
+
+    public function format(string $text)
+    {
+        return $text;
     }
 }
-function __autoload($url){
-    require("$url.php");
+class HtmlFormatter implements FormatterInterface
+{
+
+    public function format(string $text)
+    {
+        return sprintf('<p>%s</p>p>', $text);
+    }
 }
-$abc=new ABC;
-$abc->demo();
+
+abstract class Service
+{
+    protected $implementation;
+    public function __construct(FormatterInterface $printer)
+    {
+        $this->implementation = $printer;
+    }
+
+    public function setImplementation(FormatterInterface $printer)
+    {
+        $this->implementation = $printer;
+    }
+
+    abstract public function get();
+}
+class HelloWorldService extends Service
+{
+    public function get()
+    {
+        return $this->implementation->format('Hello World');
+    }
+}
+$service = new HelloWorldService(new PlainTextFormatter());
+var_dump($service->get());
+$service->setImplementation(new HtmlFormatter());
+var_dump($service->get());
