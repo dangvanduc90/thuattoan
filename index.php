@@ -1032,21 +1032,50 @@
 //    }
 //}
 
-// Design Pattern: Decorator
-class Number {
-    public function print()
-    {
-        echo rand(1, 9999);
-    }
-}
+//// Design Pattern: Decorator
+//class Number {
+//    public function print()
+//    {
+//        echo rand(1, 9999);
+//    }
+//}
+//
+//class Decorator {
+//    private $number;
+//    public function __construct(Number $number)
+//    {
+//        $this->number = $number;
+//        $this->number->print();
+//    }
+//}
+//
+//$decorator = new Decorator(new Number());
 
-class Decorator {
-    private $number;
-    public function __construct(Number $number)
-    {
-        $this->number = $number;
-        $this->number->print();
+// THUAT TOAN SAP XEP
+// Bubble Sort
+echo '<pre>';
+$arr = [
+    5,
+    3,
+    1,
+    6,
+    7,
+    2,
+    4,
+];
+$n = count($arr);
+$counter = 0;
+for ($i = 0; $i < $n; $i++) {
+    for ($j = 0; $j < $n; $j++) {
+        if ($arr[$i] < $arr[$j]) {
+            // swap
+            $z = $arr[$i];
+            $arr[$i] = $arr[$j];
+            $arr[$j] = $z;
+        }
     }
+    ++$counter;
+    print_r('looped: ' . $counter);
+    echo '<br>';
 }
-
-$decorator = new Decorator(new Number());
+print_r($arr);
