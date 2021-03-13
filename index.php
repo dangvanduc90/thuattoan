@@ -1051,31 +1051,62 @@
 //
 //$decorator = new Decorator(new Number());
 
-// THUAT TOAN SAP XEP
-// Bubble Sort
-echo '<pre>';
+// // THUAT TOAN SAP XEP
+// // Bubble Sort
+// echo '<pre>';
+// $arr = [
+//     5,
+//     3,
+//     1,
+//     6,
+//     7,
+//     2,
+//     4,
+// ];
+// $n = count($arr);
+// $counter = 0;
+// for ($i = 0; $i < $n; $i++) {
+//     for ($j = 0; $j < $n; $j++) {
+//         if ($arr[$i] < $arr[$j]) {
+//             // swap
+//             $z = $arr[$i];
+//             $arr[$i] = $arr[$j];
+//             $arr[$j] = $z;
+//         }
+//     }
+//     ++$counter;
+//     print_r('looped: ' . $counter);
+//     echo '<br>';
+// }
+// print_r($arr);
+
 $arr = [
-    5,
-    3,
     1,
-    6,
-    7,
+    53,
+    23,
+    85,
+    34,
+    8,
+    51,
+    98,
     2,
-    4,
+    64,
+    64,
+    64,
+    64,
 ];
-$n = count($arr);
-$counter = 0;
-for ($i = 0; $i < $n; $i++) {
-    for ($j = 0; $j < $n; $j++) {
-        if ($arr[$i] < $arr[$j]) {
-            // swap
-            $z = $arr[$i];
-            $arr[$i] = $arr[$j];
-            $arr[$j] = $z;
-        }
+
+echo '<pre>';
+
+//var_dump(array_count_values($arr));
+
+$rs = [];
+foreach ($arr as $num) {
+    if (isset($rs[$num])) {
+        $rs[$num] = $rs[$num] + 1;
+    } else {
+        $rs[$num] = 1;
     }
-    ++$counter;
-    print_r('looped: ' . $counter);
-    echo '<br>';
 }
-print_r($arr);
+var_dump($rs);
+die();
