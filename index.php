@@ -1080,33 +1080,39 @@
 // }
 // print_r($arr);
 
-$arr = [
-    1,
-    53,
-    23,
-    85,
-    34,
-    8,
-    51,
-    98,
-    2,
-    64,
-    64,
-    64,
-    64,
-];
+//$arr = [
+//    1,
+//    53,
+//    23,
+//    85,
+//    34,
+//    8,
+//    51,
+//    98,
+//    2,
+//    64,
+//    64,
+//    64,
+//    64,
+//];
+//
+//echo '<pre>';
+//
+////var_dump(array_count_values($arr));
+//
+//$rs = [];
+//foreach ($arr as $num) {
+//    if (isset($rs[$num])) {
+//        $rs[$num] = $rs[$num] + 1;
+//    } else {
+//        $rs[$num] = 1;
+//    }
+//}
+//var_dump($rs);
+//die();
 
-echo '<pre>';
 
-//var_dump(array_count_values($arr));
 
-$rs = [];
-foreach ($arr as $num) {
-    if (isset($rs[$num])) {
-        $rs[$num] = $rs[$num] + 1;
-    } else {
-        $rs[$num] = 1;
-    }
-}
-var_dump($rs);
-die();
+include dirname(__FILE__) . '/app.php';
+
+var_dump(Legit::systemRegistry('elasticsearch/order'));
