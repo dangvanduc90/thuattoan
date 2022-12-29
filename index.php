@@ -1113,6 +1113,7 @@
 
 
 
-include dirname(__FILE__) . '/app.php';
+include dirname(__FILE__) . '/legit.php';
+Legit::initialize();
 
 var_dump(Legit::systemRegistry('elasticsearch/order'));
