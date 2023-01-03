@@ -1118,6 +1118,17 @@
 //
 //var_dump(Legit::systemRegistry('elasticsearch/order'));
 
-include dirname(__FILE__) . '/debug.php';
-$debug = new Debug();
-$debug->triggerError('loi ne', 419);
+
+
+//
+//include dirname(__FILE__) . '/debug.php';
+//$debug = new Debug();
+//$debug->triggerError('loi ne', 419);
+
+include './Voz.php';
+Voz::initialize();
+Voz::core('woz')->showInfo();
+echo "<br>";
+Voz::core('woz')->showInfo();
+echo "<br>";
+Voz::core('woz')->showInfo();
