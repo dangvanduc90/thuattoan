@@ -1113,7 +1113,11 @@
 
 
 
-include dirname(__FILE__) . '/legit.php';
-Legit::initialize();
+//include dirname(__FILE__) . '/legit.php';
+//Legit::initialize();
+//
+//var_dump(Legit::systemRegistry('elasticsearch/order'));
 
-var_dump(Legit::systemRegistry('elasticsearch/order'));
+include dirname(__FILE__) . '/debug.php';
+$debug = new Debug();
+$debug->triggerError('loi ne', 419);
