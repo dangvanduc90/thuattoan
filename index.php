@@ -1051,6 +1051,557 @@
 //
 //$decorator = new Decorator(new Number());
 
+//// Design Pattern: Observer
+//interface Observer
+//{
+//    public function update();
+//}
+//interface Subject
+//{
+//    public function attach(Observer $observer);
+//    public function detach(Observer $observer);
+//    public function notify();
+//}
+//class Account implements Subject {
+//    const LOGIN_SUCCESS = 1;
+//    const LOGIN_FAILURE = 2;
+//    const EXPIRED = 4;
+//    private $state;
+//    private $storage;
+//    private $data;
+//
+//    public function __construct()
+//    {
+//        $this->state = [];
+//        $this->storage = [];
+//    }
+//
+//    public function attach(Observer $observer)
+//    {
+//        $isContain = array_search($observer, $this->storage);
+//        if ($isContain === false) {
+//            $this->storage[] = $observer;
+//        }
+//    }
+//
+//    public function detach(Observer $observer)
+//    {
+//        foreach($this->storage as $key => $val) {
+//            if ($val == $observer) {
+//                unset($this->storage[$key]);
+//            }
+//        }
+//    }
+//
+//    public function notify()
+//    {
+//        foreach($this->storage as $observer) {
+//            $observer->update($this);
+//        }
+//    }
+//
+//    public function setData($data)
+//    {
+//        $this->data = $data;
+//    }
+//
+//    public function getData()
+//    {
+//        return $this->data;
+//    }
+//
+//    public function setState($state)
+//    {
+//        $this->state = $state;
+//    }
+//
+//    public function getState()
+//    {
+//        return $this->state;
+//    }
+//
+//    public function login(string $email, string $password)
+//    {
+//        $this->setData([
+//            'email' => $email,
+//            'password' => $password,
+//        ]);
+//        $login = $this->process($email);
+//        $login ? $this->setState(Account::LOGIN_SUCCESS) : $this->setState(Account::LOGIN_FAILURE);
+//        $this->notify();
+//    }
+//
+//    public function save()
+//    {
+//        $this->notify();
+//    }
+//
+//    public function process($email)
+//    {
+//        if ($email == 'dangvanduc0@gmail.com') {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//}
+//
+//class Logger implements Observer {
+//    private $account;
+//    public function __construct(Account $account)
+//    {
+//        $this->account = $account;
+//    }
+//
+//    public function update()
+//    {
+//        $account = $this->account;
+//        $state = $account->getState();
+//        $data = $account->getData();
+//        if ($state == Account::LOGIN_SUCCESS) {
+//            echo  "User {$data['email']} vừa online";
+//            echo '<br>';
+//        }
+//    }
+//}
+//class Mailer implements Observer {
+//    private $account;
+//    public function __construct(Account $account)
+//    {
+//        $this->account = $account;
+//    }
+//
+//    public function update()
+//    {
+//        $account = $this->account;
+//        $state = $account->getState();
+//        $data = $account->getData();
+//        if ($state == $account::EXPIRED) {
+//            echo "Account {$data['email']} has expired. Email sent!";
+//            echo '<br>';
+//        }
+//    }
+//}
+//class Security implements Observer {
+//    private $account;
+//    public function __construct(Account $account)
+//    {
+//        $this->account = $account;
+//    }
+//    public function update()
+//    {
+//        $account = $this->account;
+//        $state = $account->getState();
+//        $data = $account->getData();
+//        if ($state == Account::LOGIN_FAILURE) {
+//            echo "Account {$data['email']} with password {$data['password']} are login failure";
+//            echo '<br>';
+//        }
+//    }
+//}
+//$account = new Account();
+//$security = new Security($account);
+//$logger = new Logger($account);
+//$mailer = new Mailer($account);
+//
+////Attach các observer vào subject
+//$account->attach($logger);
+//$account->attach($mailer);
+//$account->attach($security);
+//
+//// Đăng nhập
+//$account->login('dangvanduc0@gmail.com', '123456');
+//
+//// Thay đổi state
+//$account->setState(Account::EXPIRED);
+//$account->save();
+//
+//// login failure
+//$account->login('hack@framgia.com', '123456');
+//
+//// Xóa security observer
+//$account->detach($security);
+//$account->login('hack@framgia.com', '123456'); // will not notify
+
+// Type hinting classes and interfaces
+//interface Enrollable {};
+//interface Attendable {};
+//class Chris implements Enrollable
+//{
+//    public $name = 'Chris';
+//}
+//class UniversityOfEdinburgh implements Attendable
+//{
+//    public $name = 'University of Edinburgh';
+//}
+//function enroll(Enrollable $enrollee, Attendable $premises)
+//{
+//    echo $enrollee->name . ' is being enrolled at ' . $premises->name;
+//}
+//$chris = new Chris();
+//$edinburgh = new UniversityOfEdinburgh();
+//enroll($chris, $edinburgh);
+
+//// Design Pattern: Composite
+//interface RenderableInterface {
+//    public function render();
+//}
+//class Form implements RenderableInterface {
+//
+//    private $elements = [];
+//
+//    public function render(): string
+//    {
+//        $formCode = '<form>';
+//        foreach ($this->elements as $element) {
+//            $formCode .= $element->render();
+//        }
+//        $formCode .= '</form>';
+//        return $formCode;
+//    }
+//
+//    public function addElement(RenderableInterface $renderable)
+//    {
+//        $this->elements[] = $renderable;
+//    }
+//}
+//class InputElement implements RenderableInterface {
+//
+//    public function render(): string
+//    {
+//        return '<input type="text">';
+//    }
+//}
+//class TextElement implements RenderableInterface {
+//
+//    private $text;
+//    public function __construct(string $str)
+//    {
+//        $this->text = $str;
+//    }
+//
+//    public function render(): string
+//    {
+//        return $this->text;
+//    }
+//}
+//
+//$form = new Form();
+//$form->addElement(new TextElement('Email:'));
+//$form->addElement(new InputElement());
+//$form->addElement(new TextElement('Password:'));
+//$form->addElement(new InputElement());
+//
+//var_dump($form->render());
+
+//// Design Pattern: Flyweight
+//interface FlyweightInterface {
+//    public function render(string $font);
+//}
+//
+//class CharacterFlyweight implements FlyweightInterface {
+//    private $name;
+//
+//    public function __construct(string $name)
+//    {
+//        $this->name = $name;
+//    }
+//
+//    public function render(string $font)
+//    {
+//        return sprintf('Character %s with font %s', $this->name, $font);
+//    }
+//}
+//class FlyweightFactory implements Countable {
+//
+//    private $pool = [];
+//
+//    public function get(string $name): CharacterFlyweight
+//    {
+//        if (!isset($this->pool[$name])) {
+//            $this->pool[$name] = new CharacterFlyweight($name);
+//        }
+//
+//        return $this->pool[$name];
+//    }
+//    /**
+//     * Count elements of an object
+//     * @link http://php.net/manual/en/countable.count.php
+//     * @return int The custom count as an integer.
+//     * </p>
+//     * <p>
+//     * The return value is cast to an integer.
+//     * @since 5.1.0
+//     */
+//    public function count()
+//    {
+//        return count($this->pool);
+//    }
+//}
+//
+//$characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+//    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+//$fonts = ['Arial', 'Times New Roman', 'Verdana', 'Helvetica'];
+//
+//$factory = new FlyweightFactory();
+//
+//foreach ($characters as $char) {
+//    foreach ($fonts as $font) {
+//        $flyweight = $factory->get($char);
+//        $rendered = $flyweight->render('Arial');
+//        var_dump($rendered);
+//    }
+//}
+//var_dump($factory->count());
+
+//// Design Pattern: Proxy
+//interface BankAccount {
+//    public function deposit(int $amount);
+//    public function getBalance(): int;
+//}
+//class HeavyBankAccount implements BankAccount {
+//    private $transactions = [];
+//
+//    public function deposit(int $amount)
+//    {
+//        $this->transactions[] = $amount;
+//    }
+//
+//    public function getBalance(): int
+//    {
+//        return array_sum($this->transactions);
+//    }
+//}
+//class BankAccountProxy extends HeavyBankAccount implements BankAccount {
+//    private $balance;
+//
+//    public function getBalance(): int
+//    {
+//        if ($this->balance === null) {
+//            $this->balance = parent::getBalance();
+//        }
+//        return $this->balance;
+//    }
+//}
+//
+//$bank = new BankAccountProxy();
+//$bank->deposit(100);
+//$bank->deposit(120);
+//var_dump($bank->getBalance());
+
+//// Design Pattern: Register
+//abstract class Register {
+//    const LOGGER = 'logger';
+//
+//    private static $storedValues = [];
+//
+//    private static $allowedKeys = [
+//        self::LOGGER,
+//    ];
+//
+//    public static function set(string $key, $value)
+//    {
+//        if (!in_array($key, self::$allowedKeys)) {
+//            throw new \InvalidArgumentException('Invalid key given');
+//        }
+//        self::$storedValues[$key] = $value;
+//    }
+//
+//    public static function get(string $key)
+//    {
+//        if (!in_array($key, self::$allowedKeys) || !isset(  self::$storedValues[$key])) {
+//            throw new \InvalidArgumentException('Invalid key given');
+//        }
+//        return self::$storedValues[$key];
+//    }
+//}
+//
+//$key = Register::LOGGER;
+//$logger = new \stdClass();
+//$logger->name = 'dangvanduc';
+//Register::set($key, $logger);
+//$storedLogger = Register::get($key);
+//var_dump($storedLogger);
+
+//// Design Pattern: Multiton
+//class Multiton
+//{
+//    private static $_instances = [];
+//    private static $_key;
+//    private $_opts1;
+//    private $_opts2;
+//
+//    protected function __construct($_opts1, $_opts2)
+//    {
+//        $this->_opts1 = $_opts1;
+//        $this->_opts2 = $_opts2;
+//    }
+//
+//    public static function getInstance($param1, $param2)
+//    {
+//        self::$_key = $param1 . $param2;
+//        if (!isset(self::$_instances[self::$_key]) || !self::$_instances[self::$_key] instanceof self) {
+//            self::$_instances[self::$_key] = new self($param1, $param2);
+//        }
+//        return self::$_instances[self::$_key];
+//    }
+//}
+//
+//$multion = Multiton::getInstance('dangvanduc90', 'dangvanduc0@gmail.com');
+//var_dump($multion);
+
+//// LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG: KỸ THUẬT SỬ DỤNG LAZY LOADING
+//class ABC{
+//    public function demo(){
+//        echo "<h2>Welcome to QHOnline Tutorial</h2>";
+//    }
+//}
+//function __autoload($url){
+//    require("$url.php");
+//}
+//$abc=new ABC;
+//$abc->demo();
+
+//// Design Pattern: Bridge
+//interface FormatterInterface
+//{
+//    public function format(string $text);
+//}
+//class PlainTextFormatter implements FormatterInterface
+//{
+//
+//    public function format(string $text)
+//    {
+//        return $text;
+//    }
+//}
+//class HtmlFormatter implements FormatterInterface
+//{
+//
+//    public function format(string $text)
+//    {
+//        return sprintf('<p>%s</p>p>', $text);
+//    }
+//}
+//
+//abstract class Service
+//{
+//    protected $implementation;
+//    public function __construct(FormatterInterface $printer)
+//    {
+//        $this->implementation = $printer;
+//    }
+//
+//    public function setImplementation(FormatterInterface $printer)
+//    {
+//        $this->implementation = $printer;
+//    }
+//
+//    abstract public function get();
+//}
+//class HelloWorldService extends Service
+//{
+//    public function get()
+//    {
+//        return $this->implementation->format('Hello World');
+//    }
+//}
+//$service = new HelloWorldService(new PlainTextFormatter());
+//var_dump($service->get());
+//$service->setImplementation(new HtmlFormatter());
+//var_dump($service->get());
+
+// Design Pattern: Strategy
+interface QuackBehavior
+{
+    public function doQuack();
+}
+class Quack implements QuackBehavior
+{
+    public function doQuack()
+    {
+        return 'Quack';
+    }
+}
+class Squeak implements QuackBehavior
+{
+    public function doQuack()
+    {
+        return 'Squeak';
+    }
+}
+class MuteQuack implements QuackBehavior
+{
+    public function doQuack()
+    {
+        return 'MuteQuack';
+    }
+}
+
+interface FlyBehavior
+{
+    public function fly();
+}
+class FlyWithWings implements FlyBehavior
+{
+    public function fly()
+    {
+        return 'FlyWithWings';
+    }
+}
+class FlyNoWay implements FlyBehavior
+{
+    public function fly()
+    {
+        return 'FlyNoWay';
+    }
+}
+class Duck
+{
+    private $quackBehavior;
+    private $flyBehavior;
+    public function __construct(QuackBehavior $quackBehavior, FlyBehavior $flyBehavior)
+    {
+        $this->quackBehavior = $quackBehavior;
+        $this->flyBehavior = $flyBehavior;
+    }
+
+    public function performQuack()
+    {
+        return $this->quackBehavior->doQuack();
+    }
+    public function performFly()
+    {
+        return $this->flyBehavior->fly();
+    }
+
+    public function play()
+    {
+        return 'Play';
+    }
+}
+
+class MallardDuck extends Duck
+{
+    private $quackBehavior;
+    private $flyBehavior;
+    public function __construct()
+    {
+        $this->quackBehavior = new Squeak();
+        $this->flyBehavior = new FlyWithWings();
+        parent::__construct($this->quackBehavior, $this->flyBehavior);
+    }
+    public function setQuackBehavior(QuackBehavior $qb) {
+        $this->quackBehavior = $qb;
+    }
+    public function setFlyBehavior(FlyBehavior $fb) {
+        $this->flyBehavior = $fb;
+    }
+}
+$mallardDuck = new MallardDuck();
+var_dump($mallardDuck->performQuack());
+
+
 // // THUAT TOAN SAP XEP
 // // Bubble Sort
 // echo '<pre>';
@@ -1125,7 +1676,7 @@
 //$debug = new Debug();
 //$debug->triggerError('loi ne', 419);
 
-include './Voz.php';
+include './voz.php';
 Voz::initialize();
 Voz::core('woz')->showInfo();
 echo "<br>";
